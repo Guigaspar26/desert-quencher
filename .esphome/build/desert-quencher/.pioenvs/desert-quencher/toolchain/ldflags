@@ -1,0 +1,3 @@
+-Wl,-Map=/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/firmware.map
+-nostartfiles
+-fno-rtti
