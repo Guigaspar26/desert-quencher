@@ -9,6 +9,14 @@ The plan is to use a **Beetle ESP32** to control a valve that is connected to th
 
 The **Beetle ESP32** has both bluetooth and Wi-Fi modules, which makes it possible to communicate with it remotely without too much trouble.
 
+- Beetle ESP32
+- 12V valve connected to water point
+- Relay module (5V)
+- Booster circuit 3V -> 5V
+- Wall plug (12V)
+- Battery pack (TBD)
+- NAS server
+
 
 ## Control
 
