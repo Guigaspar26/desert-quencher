@@ -19,8 +19,8 @@ esphome:
                 id(watering_period)
               - !lambda |-
                 id(manual_override) ? "yes" : "no"
-            logger_id: logger_logger_id
             tag: main
+            logger_id: logger_logger_id
           type_id: lambdaaction_id_2
         - wait_until:
             condition:
@@ -101,9 +101,9 @@ wifi:
     then:
       - logger.log:
           format: WiFi connected
+          tag: main
           level: DEBUG
           logger_id: logger_logger_id
-          tag: main
           args: []
         type_id: lambdaaction_id_3
     trigger_id: trigger_id
@@ -112,9 +112,9 @@ wifi:
     then:
       - logger.log:
           format: WiFi disconnected
+          tag: main
           level: DEBUG
           logger_id: logger_logger_id
-          tag: main
           args: []
         type_id: lambdaaction_id_4
     trigger_id: trigger_id_2
@@ -182,7 +182,7 @@ globals:
   - id: valve_duration_s
     type: int
     restore_value: true
-    initial_value: '30'
+    initial_value: '5'
     update_interval: 1s
   - id: manual_override
     type: bool
@@ -220,8 +220,8 @@ switch:
               args:
                 - !lambda |-
                   id(valve_duration_s)
-              logger_id: logger_logger_id
               tag: main
+              logger_id: logger_logger_id
             type_id: lambdaaction_id_5
         trigger_id: trigger_id_3
         automation_id: automation_id_4
@@ -229,9 +229,9 @@ switch:
       - then:
           - logger.log:
               format: Valve CLOSED
+              tag: main
               level: DEBUG
               logger_id: logger_logger_id
-              tag: main
               args: []
             type_id: lambdaaction_id_6
         trigger_id: trigger_id_4
@@ -241,33 +241,6 @@ switch:
     _entity_register_method: switch
     _entity_name: Valve
     _entity_object_id_hash: 636313445
-    _entity_disabled_by_default: 0
-    _entity_icon_idx: 0
-    _entity_dc_idx: 0
-  - platform: template
-    name: Prevent Deep Sleep
-    id: prevent_deep_sleep
-    optimistic: true
-    restore_mode: RESTORE_DEFAULT_OFF
-    turn_on_action:
-      then:
-        - deep_sleep.prevent:
-            id: deep_sleep_1
-          type_id: deep_sleep_preventdeepsleepaction_id
-      trigger_id: trigger_id_5
-      automation_id: automation_id_6
-    turn_off_action:
-      then:
-        - deep_sleep.allow:
-            id: deep_sleep_1
-          type_id: deep_sleep_allowdeepsleepaction_id
-      trigger_id: trigger_id_6
-      automation_id: automation_id_7
-    disabled_by_default: false
-    assumed_state: false
-    _entity_register_method: switch
-    _entity_name: Prevent Deep Sleep
-    _entity_object_id_hash: 2631505450
     _entity_disabled_by_default: 0
     _entity_icon_idx: 0
     _entity_dc_idx: 0
@@ -285,13 +258,13 @@ switch:
           type_id: globals_globalvarsetaction_id
         - logger.log:
             format: Manual override ENABLED — will water on next wake
+            tag: main
             level: DEBUG
             logger_id: logger_logger_id
-            tag: main
             args: []
           type_id: lambdaaction_id_7
-      trigger_id: trigger_id_7
-      automation_id: automation_id_8
+      trigger_id: trigger_id_5
+      automation_id: automation_id_6
     turn_off_action:
       then:
         - globals.set:
@@ -300,13 +273,13 @@ switch:
           type_id: globals_globalvarsetaction_id_2
         - logger.log:
             format: Manual override DISABLED
+            tag: main
             level: DEBUG
             logger_id: logger_logger_id
-            tag: main
             args: []
           type_id: lambdaaction_id_8
-      trigger_id: trigger_id_8
-      automation_id: automation_id_9
+      trigger_id: trigger_id_6
+      automation_id: automation_id_7
     disabled_by_default: false
     restore_mode: ALWAYS_OFF
     optimistic: false
@@ -344,11 +317,11 @@ number:
                 (int)x
               - !lambda |-
                 (int)x * 15
-            logger_id: logger_logger_id
             tag: main
+            logger_id: logger_logger_id
           type_id: lambdaaction_id_9
-      trigger_id: trigger_id_9
-      automation_id: automation_id_10
+      trigger_id: trigger_id_7
+      automation_id: automation_id_8
     disabled_by_default: false
     mode: AUTO
     optimistic: false
@@ -383,11 +356,11 @@ number:
             args:
               - !lambda |-
                 (int)x
-            logger_id: logger_logger_id
             tag: main
+            logger_id: logger_logger_id
           type_id: lambdaaction_id_10
-      trigger_id: trigger_id_10
-      automation_id: automation_id_11
+      trigger_id: trigger_id_8
+      automation_id: automation_id_9
     disabled_by_default: false
     mode: AUTO
     optimistic: false
@@ -422,11 +395,11 @@ number:
             args:
               - !lambda |-
                 (int)x
-            logger_id: logger_logger_id
             tag: main
+            logger_id: logger_logger_id
           type_id: lambdaaction_id_11
-      trigger_id: trigger_id_11
-      automation_id: automation_id_12
+      trigger_id: trigger_id_9
+      automation_id: automation_id_10
     disabled_by_default: false
     mode: AUTO
     optimistic: false
@@ -505,8 +478,8 @@ script:
               id(manual_override) ? "yes" : "no"
             - !lambda |-
               id(watering_period) - id(wake_count)
-          logger_id: logger_logger_id
           tag: main
+          logger_id: logger_logger_id
         type_id: lambdaaction_id_13
       - if:
           condition:
@@ -520,8 +493,8 @@ script:
                 args:
                   - !lambda |-
                     id(manual_override) ? "manual override" : "scheduled"
-                logger_id: logger_logger_id
                 tag: main
+                logger_id: logger_logger_id
               type_id: lambdaaction_id_14
             - switch.turn_on:
                 id: valve
@@ -555,8 +528,8 @@ script:
                     id(watering_period) * 15
                   - !lambda |-
                     id(watering_period)
-                logger_id: logger_logger_id
                 tag: main
+                logger_id: logger_logger_id
               type_id: lambdaaction_id_15
           else:
             - logger.log:
@@ -567,17 +540,26 @@ script:
                     id(watering_period) - id(wake_count)
                   - !lambda |-
                     (id(watering_period) - id(wake_count)) * 15
-                logger_id: logger_logger_id
                 tag: main
+                logger_id: logger_logger_id
               type_id: lambdaaction_id_16
         type_id: ifaction_id
+      - switch.turn_on:
+          id: valve
+        type_id: switch__turnonaction_id_2
+      - delay: !lambda |-
+          return id(valve_duration_s) * 1000;
+        type_id: delayaction_id_3
+      - switch.turn_off:
+          id: valve
+        type_id: switch__turnoffaction_id_2
       - deep_sleep.enter:
           id: deep_sleep_1
           sleep_duration: !lambda |-
-            return id(sleep_duration_min) * 60000;
+            return 500;
         type_id: deep_sleep_enterdeepsleepaction_id
-    trigger_id: trigger_id_12
-    automation_id: automation_id_13
+    trigger_id: trigger_id_10
+    automation_id: automation_id_11
     mode: single
     parameters: {}
 preferences:

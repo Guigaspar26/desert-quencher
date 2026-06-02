@@ -46,16 +46,6 @@ alignas(esp32::ESP32InternalGPIOPin) static unsigned char esp32__esp32_esp32inte
 static esp32::ESP32InternalGPIOPin *const esp32_esp32internalgpiopin_id = reinterpret_cast<esp32::ESP32InternalGPIOPin *>(esp32__esp32_esp32internalgpiopin_id__pstorage);
 alignas(Automation<>) static unsigned char esphome__automation_id_4__pstorage[sizeof(Automation<>)];
 static Automation<> *const automation_id_4 = reinterpret_cast<Automation<> *>(esphome__automation_id_4__pstorage);
-alignas(template_::TemplateSwitch) static unsigned char template__prevent_deep_sleep__pstorage[sizeof(template_::TemplateSwitch)];
-static template_::TemplateSwitch *const prevent_deep_sleep = reinterpret_cast<template_::TemplateSwitch *>(template__prevent_deep_sleep__pstorage);
-alignas(Automation<>) static unsigned char esphome__automation_id_7__pstorage[sizeof(Automation<>)];
-static Automation<> *const automation_id_7 = reinterpret_cast<Automation<> *>(esphome__automation_id_7__pstorage);
-alignas(deep_sleep::AllowDeepSleepAction<>) static unsigned char deep_sleep__deep_sleep_allowdeepsleepaction_id__pstorage[sizeof(deep_sleep::AllowDeepSleepAction<>)];
-static deep_sleep::AllowDeepSleepAction<> *const deep_sleep_allowdeepsleepaction_id = reinterpret_cast<deep_sleep::AllowDeepSleepAction<> *>(deep_sleep__deep_sleep_allowdeepsleepaction_id__pstorage);
-alignas(Automation<>) static unsigned char esphome__automation_id_6__pstorage[sizeof(Automation<>)];
-static Automation<> *const automation_id_6 = reinterpret_cast<Automation<> *>(esphome__automation_id_6__pstorage);
-alignas(deep_sleep::PreventDeepSleepAction<>) static unsigned char deep_sleep__deep_sleep_preventdeepsleepaction_id__pstorage[sizeof(deep_sleep::PreventDeepSleepAction<>)];
-static deep_sleep::PreventDeepSleepAction<> *const deep_sleep_preventdeepsleepaction_id = reinterpret_cast<deep_sleep::PreventDeepSleepAction<> *>(deep_sleep__deep_sleep_preventdeepsleepaction_id__pstorage);
 alignas(template_::TemplateSwitch) static unsigned char template__manual_override_switch__pstorage[sizeof(template_::TemplateSwitch)];
 static template_::TemplateSwitch *const manual_override_switch = reinterpret_cast<template_::TemplateSwitch *>(template__manual_override_switch__pstorage);
 alignas(template_::TemplateNumber) static unsigned char template__watering_period_num__pstorage[sizeof(template_::TemplateNumber)];
@@ -70,8 +60,8 @@ alignas(wifi_signal::WiFiSignalSensor) static unsigned char wifi_signal__wifi_si
 static wifi_signal::WiFiSignalSensor *const wifi_signal_wifisignalsensor_id = reinterpret_cast<wifi_signal::WiFiSignalSensor *>(wifi_signal__wifi_signal_wifisignalsensor_id__pstorage);
 alignas(script::SingleScript<>) static unsigned char script__evaluate_and_water__pstorage[sizeof(script::SingleScript<>)];
 static script::SingleScript<> *const evaluate_and_water = reinterpret_cast<script::SingleScript<> *>(script__evaluate_and_water__pstorage);
-alignas(Automation<>) static unsigned char esphome__automation_id_13__pstorage[sizeof(Automation<>)];
-static Automation<> *const automation_id_13 = reinterpret_cast<Automation<> *>(esphome__automation_id_13__pstorage);
+alignas(Automation<>) static unsigned char esphome__automation_id_11__pstorage[sizeof(Automation<>)];
+static Automation<> *const automation_id_11 = reinterpret_cast<Automation<> *>(esphome__automation_id_11__pstorage);
 alignas(globals::RestoringGlobalsComponent<int>) static unsigned char globals__wake_count__pstorage[sizeof(globals::RestoringGlobalsComponent<int>)];
 static globals::RestoringGlobalsComponent<int> *const wake_count = reinterpret_cast<globals::RestoringGlobalsComponent<int> *>(globals__wake_count__pstorage);
 alignas(globals::RestoringGlobalsComponent<int>) static unsigned char globals__watering_period__pstorage[sizeof(globals::RestoringGlobalsComponent<int>)];
@@ -82,32 +72,32 @@ alignas(globals::RestoringGlobalsComponent<bool>) static unsigned char globals__
 static globals::RestoringGlobalsComponent<bool> *const manual_override = reinterpret_cast<globals::RestoringGlobalsComponent<bool> *>(globals__manual_override__pstorage);
 alignas(globals::RestoringGlobalsComponent<int>) static unsigned char globals__sleep_duration_min__pstorage[sizeof(globals::RestoringGlobalsComponent<int>)];
 static globals::RestoringGlobalsComponent<int> *const sleep_duration_min = reinterpret_cast<globals::RestoringGlobalsComponent<int> *>(globals__sleep_duration_min__pstorage);
-alignas(Automation<>) static unsigned char esphome__automation_id_9__pstorage[sizeof(Automation<>)];
-static Automation<> *const automation_id_9 = reinterpret_cast<Automation<> *>(esphome__automation_id_9__pstorage);
+alignas(Automation<>) static unsigned char esphome__automation_id_7__pstorage[sizeof(Automation<>)];
+static Automation<> *const automation_id_7 = reinterpret_cast<Automation<> *>(esphome__automation_id_7__pstorage);
 alignas(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>) static unsigned char globals__globals_globalvarsetaction_id_2__pstorage[sizeof(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>)];
 static globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>> *const globals_globalvarsetaction_id_2 = reinterpret_cast<globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>> *>(globals__globals_globalvarsetaction_id_2__pstorage);
 alignas(StatelessLambdaAction<>) static unsigned char esphome__lambdaaction_id_8__pstorage[sizeof(StatelessLambdaAction<>)];
 static StatelessLambdaAction<> *const lambdaaction_id_8 = reinterpret_cast<StatelessLambdaAction<> *>(esphome__lambdaaction_id_8__pstorage);
-alignas(Automation<>) static unsigned char esphome__automation_id_8__pstorage[sizeof(Automation<>)];
-static Automation<> *const automation_id_8 = reinterpret_cast<Automation<> *>(esphome__automation_id_8__pstorage);
+alignas(Automation<>) static unsigned char esphome__automation_id_6__pstorage[sizeof(Automation<>)];
+static Automation<> *const automation_id_6 = reinterpret_cast<Automation<> *>(esphome__automation_id_6__pstorage);
 alignas(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>) static unsigned char globals__globals_globalvarsetaction_id__pstorage[sizeof(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>)];
 static globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>> *const globals_globalvarsetaction_id = reinterpret_cast<globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>> *>(globals__globals_globalvarsetaction_id__pstorage);
 alignas(StatelessLambdaAction<>) static unsigned char esphome__lambdaaction_id_7__pstorage[sizeof(StatelessLambdaAction<>)];
 static StatelessLambdaAction<> *const lambdaaction_id_7 = reinterpret_cast<StatelessLambdaAction<> *>(esphome__lambdaaction_id_7__pstorage);
-alignas(Automation<float>) static unsigned char esphome__automation_id_10__pstorage[sizeof(Automation<float>)];
-static Automation<float> *const automation_id_10 = reinterpret_cast<Automation<float> *>(esphome__automation_id_10__pstorage);
+alignas(Automation<float>) static unsigned char esphome__automation_id_8__pstorage[sizeof(Automation<float>)];
+static Automation<float> *const automation_id_8 = reinterpret_cast<Automation<float> *>(esphome__automation_id_8__pstorage);
 alignas(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>) static unsigned char globals__globals_globalvarsetaction_id_3__pstorage[sizeof(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>)];
 static globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *const globals_globalvarsetaction_id_3 = reinterpret_cast<globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *>(globals__globals_globalvarsetaction_id_3__pstorage);
 alignas(StatelessLambdaAction<float>) static unsigned char esphome__lambdaaction_id_9__pstorage[sizeof(StatelessLambdaAction<float>)];
 static StatelessLambdaAction<float> *const lambdaaction_id_9 = reinterpret_cast<StatelessLambdaAction<float> *>(esphome__lambdaaction_id_9__pstorage);
-alignas(Automation<float>) static unsigned char esphome__automation_id_11__pstorage[sizeof(Automation<float>)];
-static Automation<float> *const automation_id_11 = reinterpret_cast<Automation<float> *>(esphome__automation_id_11__pstorage);
+alignas(Automation<float>) static unsigned char esphome__automation_id_9__pstorage[sizeof(Automation<float>)];
+static Automation<float> *const automation_id_9 = reinterpret_cast<Automation<float> *>(esphome__automation_id_9__pstorage);
 alignas(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>) static unsigned char globals__globals_globalvarsetaction_id_4__pstorage[sizeof(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>)];
 static globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *const globals_globalvarsetaction_id_4 = reinterpret_cast<globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *>(globals__globals_globalvarsetaction_id_4__pstorage);
 alignas(StatelessLambdaAction<float>) static unsigned char esphome__lambdaaction_id_10__pstorage[sizeof(StatelessLambdaAction<float>)];
 static StatelessLambdaAction<float> *const lambdaaction_id_10 = reinterpret_cast<StatelessLambdaAction<float> *>(esphome__lambdaaction_id_10__pstorage);
-alignas(Automation<float>) static unsigned char esphome__automation_id_12__pstorage[sizeof(Automation<float>)];
-static Automation<float> *const automation_id_12 = reinterpret_cast<Automation<float> *>(esphome__automation_id_12__pstorage);
+alignas(Automation<float>) static unsigned char esphome__automation_id_10__pstorage[sizeof(Automation<float>)];
+static Automation<float> *const automation_id_10 = reinterpret_cast<Automation<float> *>(esphome__automation_id_10__pstorage);
 alignas(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>) static unsigned char globals__globals_globalvarsetaction_id_5__pstorage[sizeof(globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>)];
 static globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *const globals_globalvarsetaction_id_5 = reinterpret_cast<globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float> *>(globals__globals_globalvarsetaction_id_5__pstorage);
 alignas(StatelessLambdaAction<float>) static unsigned char esphome__lambdaaction_id_11__pstorage[sizeof(StatelessLambdaAction<float>)];
@@ -148,6 +138,12 @@ alignas(StatelessLambdaAction<>) static unsigned char esphome__lambdaaction_id_1
 static StatelessLambdaAction<> *const lambdaaction_id_15 = reinterpret_cast<StatelessLambdaAction<> *>(esphome__lambdaaction_id_15__pstorage);
 alignas(StatelessLambdaAction<>) static unsigned char esphome__lambdaaction_id_16__pstorage[sizeof(StatelessLambdaAction<>)];
 static StatelessLambdaAction<> *const lambdaaction_id_16 = reinterpret_cast<StatelessLambdaAction<> *>(esphome__lambdaaction_id_16__pstorage);
+alignas(switch_::TurnOnAction<>) static unsigned char switch__switch__turnonaction_id_2__pstorage[sizeof(switch_::TurnOnAction<>)];
+static switch_::TurnOnAction<> *const switch__turnonaction_id_2 = reinterpret_cast<switch_::TurnOnAction<> *>(switch__switch__turnonaction_id_2__pstorage);
+alignas(DelayAction<>) static unsigned char esphome__delayaction_id_3__pstorage[sizeof(DelayAction<>)];
+static DelayAction<> *const delayaction_id_3 = reinterpret_cast<DelayAction<> *>(esphome__delayaction_id_3__pstorage);
+alignas(switch_::TurnOffAction<>) static unsigned char switch__switch__turnoffaction_id_2__pstorage[sizeof(switch_::TurnOffAction<>)];
+static switch_::TurnOffAction<> *const switch__turnoffaction_id_2 = reinterpret_cast<switch_::TurnOffAction<> *>(switch__switch__turnoffaction_id_2__pstorage);
 alignas(deep_sleep::EnterDeepSleepAction<>) static unsigned char deep_sleep__deep_sleep_enterdeepsleepaction_id__pstorage[sizeof(deep_sleep::EnterDeepSleepAction<>)];
 static deep_sleep::EnterDeepSleepAction<> *const deep_sleep_enterdeepsleepaction_id = reinterpret_cast<deep_sleep::EnterDeepSleepAction<> *>(deep_sleep__deep_sleep_enterdeepsleepaction_id__pstorage);
 alignas(StatelessLambdaAction<>) static unsigned char esphome__lambdaaction_id__pstorage[sizeof(StatelessLambdaAction<>)];
@@ -189,7 +185,7 @@ static constexpr size_t ESPHOME_LOOPING_COMPONENT_COUNT = \
   (1 * HasLoopOverride<StartupTrigger>::value) + \
   (1 * HasLoopOverride<deep_sleep::DeepSleepComponent>::value) + \
   (1 * HasLoopOverride<gpio::GPIOSwitch>::value) + \
-  (2 * HasLoopOverride<template_::TemplateSwitch>::value) + \
+  (1 * HasLoopOverride<template_::TemplateSwitch>::value) + \
   (3 * HasLoopOverride<template_::TemplateNumber>::value) + \
   (1 * HasLoopOverride<template_::TemplateSensor>::value) + \
   (1 * HasLoopOverride<wifi_signal::WiFiSignalSensor>::value) + \
@@ -290,8 +286,8 @@ void setup() {
   //                 id(watering_period)
   //               - !lambda |-
   //                 id(manual_override) ? "yes" : "no"
-  //             logger_id: logger_logger_id
   //             tag: main
+  //             logger_id: logger_logger_id
   //           type_id: lambdaaction_id_2
   //         - wait_until:
   //             condition:
@@ -332,9 +328,9 @@ void setup() {
   //     then:
   //       - logger.log:
   //           format: WiFi connected
+  //           tag: main
   //           level: DEBUG
   //           logger_id: logger_logger_id
-  //           tag: main
   //           args: []
   //         type_id: lambdaaction_id_3
   //     trigger_id: trigger_id
@@ -343,9 +339,9 @@ void setup() {
   //     then:
   //       - logger.log:
   //           format: WiFi disconnected
+  //           tag: main
   //           level: DEBUG
   //           logger_id: logger_logger_id
-  //           tag: main
   //           args: []
   //         type_id: lambdaaction_id_4
   //     trigger_id: trigger_id_2
@@ -525,8 +521,8 @@ void setup() {
   //             args:
   //               - !lambda |-
   //                 id(valve_duration_s)
-  //             logger_id: logger_logger_id
   //             tag: main
+  //             logger_id: logger_logger_id
   //           type_id: lambdaaction_id_5
   //       trigger_id: trigger_id_3
   //       automation_id: automation_id_4
@@ -534,9 +530,9 @@ void setup() {
   //     - then:
   //         - logger.log:
   //             format: Valve CLOSED
+  //             tag: main
   //             level: DEBUG
   //             logger_id: logger_logger_id
-  //             tag: main
   //             args: []
   //           type_id: lambdaaction_id_6
   //       trigger_id: trigger_id_4
@@ -555,42 +551,6 @@ void setup() {
   new(automation_id_4) Automation<>();
   // switch.template:
   //   platform: template
-  //   name: Prevent Deep Sleep
-  //   id: prevent_deep_sleep
-  //   optimistic: true
-  //   restore_mode: RESTORE_DEFAULT_OFF
-  //   turn_on_action:
-  //     then:
-  //       - deep_sleep.prevent:
-  //           id: deep_sleep_1
-  //         type_id: deep_sleep_preventdeepsleepaction_id
-  //     trigger_id: trigger_id_5
-  //     automation_id: automation_id_6
-  //   turn_off_action:
-  //     then:
-  //       - deep_sleep.allow:
-  //           id: deep_sleep_1
-  //         type_id: deep_sleep_allowdeepsleepaction_id
-  //     trigger_id: trigger_id_6
-  //     automation_id: automation_id_7
-  //   disabled_by_default: false
-  //   assumed_state: false
-  new(prevent_deep_sleep) template_::TemplateSwitch();
-  prevent_deep_sleep->set_restore_mode(switch_::SWITCH_RESTORE_DEFAULT_OFF);
-  App.register_switch(prevent_deep_sleep, "Prevent Deep Sleep", 2631505450UL, 0);
-  App.register_component_(prevent_deep_sleep, 11);
-  new(automation_id_7) Automation<>(prevent_deep_sleep->get_turn_off_trigger());
-  new(deep_sleep_allowdeepsleepaction_id) deep_sleep::AllowDeepSleepAction<>();
-  deep_sleep_allowdeepsleepaction_id->set_parent(deep_sleep_1);
-  automation_id_7->add_actions({deep_sleep_allowdeepsleepaction_id});
-  new(automation_id_6) Automation<>(prevent_deep_sleep->get_turn_on_trigger());
-  new(deep_sleep_preventdeepsleepaction_id) deep_sleep::PreventDeepSleepAction<>();
-  deep_sleep_preventdeepsleepaction_id->set_parent(deep_sleep_1);
-  automation_id_6->add_actions({deep_sleep_preventdeepsleepaction_id});
-  prevent_deep_sleep->set_optimistic(true);
-  prevent_deep_sleep->set_assumed_state(false);
-  // switch.template:
-  //   platform: template
   //   name: Manual Override
   //   id: manual_override_switch
   //   icon: mdi:water-pump
@@ -604,13 +564,13 @@ void setup() {
   //         type_id: globals_globalvarsetaction_id
   //       - logger.log:
   //           format: Manual override ENABLED — will water on next wake
+  //           tag: main
   //           level: DEBUG
   //           logger_id: logger_logger_id
-  //           tag: main
   //           args: []
   //         type_id: lambdaaction_id_7
-  //     trigger_id: trigger_id_7
-  //     automation_id: automation_id_8
+  //     trigger_id: trigger_id_5
+  //     automation_id: automation_id_6
   //   turn_off_action:
   //     then:
   //       - globals.set:
@@ -619,13 +579,13 @@ void setup() {
   //         type_id: globals_globalvarsetaction_id_2
   //       - logger.log:
   //           format: Manual override DISABLED
+  //           tag: main
   //           level: DEBUG
   //           logger_id: logger_logger_id
-  //           tag: main
   //           args: []
   //         type_id: lambdaaction_id_8
-  //     trigger_id: trigger_id_8
-  //     automation_id: automation_id_9
+  //     trigger_id: trigger_id_6
+  //     automation_id: automation_id_7
   //   disabled_by_default: false
   //   restore_mode: ALWAYS_OFF
   //   optimistic: false
@@ -661,11 +621,11 @@ void setup() {
   //               (int)x
   //             - !lambda |-
   //               (int)x * 15
-  //           logger_id: logger_logger_id
   //           tag: main
+  //           logger_id: logger_logger_id
   //         type_id: lambdaaction_id_9
-  //     trigger_id: trigger_id_9
-  //     automation_id: automation_id_10
+  //     trigger_id: trigger_id_7
+  //     automation_id: automation_id_8
   //   disabled_by_default: false
   //   mode: AUTO
   //   optimistic: false
@@ -702,11 +662,11 @@ void setup() {
   //           args:
   //             - !lambda |-
   //               (int)x
-  //           logger_id: logger_logger_id
   //           tag: main
+  //           logger_id: logger_logger_id
   //         type_id: lambdaaction_id_10
-  //     trigger_id: trigger_id_10
-  //     automation_id: automation_id_11
+  //     trigger_id: trigger_id_8
+  //     automation_id: automation_id_9
   //   disabled_by_default: false
   //   mode: AUTO
   //   optimistic: false
@@ -743,11 +703,11 @@ void setup() {
   //           args:
   //             - !lambda |-
   //               (int)x
-  //           logger_id: logger_logger_id
   //           tag: main
+  //           logger_id: logger_logger_id
   //         type_id: lambdaaction_id_11
-  //     trigger_id: trigger_id_11
-  //     automation_id: automation_id_12
+  //     trigger_id: trigger_id_9
+  //     automation_id: automation_id_10
   //   disabled_by_default: false
   //   mode: AUTO
   //   optimistic: false
@@ -824,8 +784,8 @@ void setup() {
   //               id(manual_override) ? "yes" : "no"
   //             - !lambda |-
   //               id(watering_period) - id(wake_count)
-  //           logger_id: logger_logger_id
   //           tag: main
+  //           logger_id: logger_logger_id
   //         type_id: lambdaaction_id_13
   //       - if:
   //           condition:
@@ -839,8 +799,8 @@ void setup() {
   //                 args:
   //                   - !lambda |-
   //                     id(manual_override) ? "manual override" : "scheduled"
-  //                 logger_id: logger_logger_id
   //                 tag: main
+  //                 logger_id: logger_logger_id
   //               type_id: lambdaaction_id_14
   //             - switch.turn_on:
   //                 id: valve
@@ -874,8 +834,8 @@ void setup() {
   //                     id(watering_period) * 15
   //                   - !lambda |-
   //                     id(watering_period)
-  //                 logger_id: logger_logger_id
   //                 tag: main
+  //                 logger_id: logger_logger_id
   //               type_id: lambdaaction_id_15
   //           else:
   //             - logger.log:
@@ -886,22 +846,31 @@ void setup() {
   //                     id(watering_period) - id(wake_count)
   //                   - !lambda |-
   //                     (id(watering_period) - id(wake_count)) * 15
-  //                 logger_id: logger_logger_id
   //                 tag: main
+  //                 logger_id: logger_logger_id
   //               type_id: lambdaaction_id_16
   //         type_id: ifaction_id
+  //       - switch.turn_on:
+  //           id: valve
+  //         type_id: switch__turnonaction_id_2
+  //       - delay: !lambda |-
+  //           return id(valve_duration_s) * 1000;
+  //         type_id: delayaction_id_3
+  //       - switch.turn_off:
+  //           id: valve
+  //         type_id: switch__turnoffaction_id_2
   //       - deep_sleep.enter:
   //           id: deep_sleep_1
   //           sleep_duration: !lambda |-
-  //             return id(sleep_duration_min) * 60000;
+  //             return 500;
   //         type_id: deep_sleep_enterdeepsleepaction_id
-  //     trigger_id: trigger_id_12
-  //     automation_id: automation_id_13
+  //     trigger_id: trigger_id_10
+  //     automation_id: automation_id_11
   //     mode: single
   //     parameters: {}
   new(evaluate_and_water) script::SingleScript<>();
   evaluate_and_water->set_name(LOG_STR("evaluate_and_water"));
-  new(automation_id_13) Automation<>(evaluate_and_water);
+  new(automation_id_11) Automation<>(evaluate_and_water);
   // md5:
   // sha256:
   //   {}
@@ -931,9 +900,9 @@ void setup() {
   //   id: valve_duration_s
   //   type: int
   //   restore_value: true
-  //   initial_value: '30'
+  //   initial_value: '5'
   //   update_interval: 1s
-  new(valve_duration_s) globals::RestoringGlobalsComponent<int>(30);
+  new(valve_duration_s) globals::RestoringGlobalsComponent<int>(5);
   valve_duration_s->set_update_interval(1000);
   App.register_component_(valve_duration_s, 15);
   valve_duration_s->set_name_hash(664109524);
@@ -958,10 +927,10 @@ void setup() {
   App.register_component_(sleep_duration_min, 15);
   sleep_duration_min->set_name_hash(3769235313UL);
   manual_override_switch->set_state_lambda([]() -> std::optional<bool> {
-      #line 121 "desert-quencher.yaml"
+      #line 112 "desert-quencher.yaml"
       return manual_override->value();
   });
-  new(automation_id_9) Automation<>(manual_override_switch->get_turn_off_trigger());
+  new(automation_id_7) Automation<>(manual_override_switch->get_turn_off_trigger());
   new(globals_globalvarsetaction_id_2) globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>(manual_override);
   globals_globalvarsetaction_id_2->set_value([]() -> globals::RestoringGlobalsComponent<bool>::value_type {
       return false;
@@ -969,8 +938,8 @@ void setup() {
   new(lambdaaction_id_8) StatelessLambdaAction<>([]() -> void {
       ESP_LOGD("main", "Manual override DISABLED");
   });
-  automation_id_9->add_actions({globals_globalvarsetaction_id_2, lambdaaction_id_8});
-  new(automation_id_8) Automation<>(manual_override_switch->get_turn_on_trigger());
+  automation_id_7->add_actions({globals_globalvarsetaction_id_2, lambdaaction_id_8});
+  new(automation_id_6) Automation<>(manual_override_switch->get_turn_on_trigger());
   new(globals_globalvarsetaction_id) globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<bool>>(manual_override);
   globals_globalvarsetaction_id->set_value([]() -> globals::RestoringGlobalsComponent<bool>::value_type {
       return true;
@@ -978,58 +947,58 @@ void setup() {
   new(lambdaaction_id_7) StatelessLambdaAction<>([]() -> void {
       ESP_LOGD("main", "Manual override ENABLED \342\200\224 will water on next wake");
   });
-  automation_id_8->add_actions({globals_globalvarsetaction_id, lambdaaction_id_7});
+  automation_id_6->add_actions({globals_globalvarsetaction_id, lambdaaction_id_7});
   manual_override_switch->set_optimistic(false);
   manual_override_switch->set_assumed_state(false);
   watering_period_num->set_template([]() -> std::optional<float> {
-      #line 144 "desert-quencher.yaml"
+      #line 135 "desert-quencher.yaml"
       return watering_period->value();
   });
-  new(automation_id_10) Automation<float>(watering_period_num->get_set_trigger());
+  new(automation_id_8) Automation<float>(watering_period_num->get_set_trigger());
   new(globals_globalvarsetaction_id_3) globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>(watering_period);
   globals_globalvarsetaction_id_3->set_value([](float x) -> globals::RestoringGlobalsComponent<int>::value_type {
-      #line 148 "desert-quencher.yaml"
+      #line 139 "desert-quencher.yaml"
       return (int)x;
   });
   new(lambdaaction_id_9) StatelessLambdaAction<float>([](float x) -> void {
       ESP_LOGI("main", "Watering period changed to %d \303\227 15 min = %d min total", (int)x, (int)x * 15);
   });
-  automation_id_10->add_actions({globals_globalvarsetaction_id_3, lambdaaction_id_9});
+  automation_id_8->add_actions({globals_globalvarsetaction_id_3, lambdaaction_id_9});
   sleep_duration_num->set_template([]() -> std::optional<float> {
-      #line 163 "desert-quencher.yaml"
+      #line 154 "desert-quencher.yaml"
       return sleep_duration_min->value();
   });
-  new(automation_id_11) Automation<float>(sleep_duration_num->get_set_trigger());
+  new(automation_id_9) Automation<float>(sleep_duration_num->get_set_trigger());
   new(globals_globalvarsetaction_id_4) globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>(sleep_duration_min);
   globals_globalvarsetaction_id_4->set_value([](float x) -> globals::RestoringGlobalsComponent<int>::value_type {
-      #line 167 "desert-quencher.yaml"
+      #line 158 "desert-quencher.yaml"
       return (int)x;
   });
   new(lambdaaction_id_10) StatelessLambdaAction<float>([](float x) -> void {
       ESP_LOGI("main", "Sleep duration changed to %dmin", (int)x);
   });
-  automation_id_11->add_actions({globals_globalvarsetaction_id_4, lambdaaction_id_10});
+  automation_id_9->add_actions({globals_globalvarsetaction_id_4, lambdaaction_id_10});
   valve_duration_num->set_template([]() -> std::optional<float> {
-      #line 182 "desert-quencher.yaml"
+      #line 173 "desert-quencher.yaml"
       return valve_duration_s->value();
   });
-  new(automation_id_12) Automation<float>(valve_duration_num->get_set_trigger());
+  new(automation_id_10) Automation<float>(valve_duration_num->get_set_trigger());
   new(globals_globalvarsetaction_id_5) globals::GlobalVarSetAction<globals::RestoringGlobalsComponent<int>, float>(valve_duration_s);
   globals_globalvarsetaction_id_5->set_value([](float x) -> globals::RestoringGlobalsComponent<int>::value_type {
-      #line 186 "desert-quencher.yaml"
+      #line 177 "desert-quencher.yaml"
       return (int)x;
   });
   new(lambdaaction_id_11) StatelessLambdaAction<float>([](float x) -> void {
       ESP_LOGI("main", "Valve duration changed to %ds", (int)x);
   });
-  automation_id_12->add_actions({globals_globalvarsetaction_id_5, lambdaaction_id_11});
+  automation_id_10->add_actions({globals_globalvarsetaction_id_5, lambdaaction_id_11});
   wakes_remaining->set_template([]() -> std::optional<float> {
-      #line 202 "desert-quencher.yaml"
+      #line 193 "desert-quencher.yaml"
       int rem = watering_period->value() - wake_count->value();
       return rem > 0 ? rem : 0;
   });
   new(lambdaaction_id_12) StatelessLambdaAction<>([]() -> void {
-      #line 215 "desert-quencher.yaml"
+      #line 206 "desert-quencher.yaml"
       wake_count->value() += 1;
   });
   new(updatecomponentaction_id) UpdateComponentAction<>(wakes_remaining);
@@ -1040,7 +1009,7 @@ void setup() {
       ESP_LOGI("main", "Evaluating: wake %d/%d, manual_override=%s, wakes remaining=%d", wake_count->value(), watering_period->value(), manual_override->value() ? "yes" : "no", watering_period->value() - wake_count->value());
   });
   new(lambdacondition_id) StatelessLambdaCondition<>([]() -> bool {
-      #line 231 "desert-quencher.yaml"
+      #line 222 "desert-quencher.yaml"
       return manual_override->value() || wake_count->value() >= watering_period->value();
   });
   new(ifaction_id) IfAction<true>(lambdacondition_id);
@@ -1050,7 +1019,7 @@ void setup() {
   new(switch__turnonaction_id) switch_::TurnOnAction<>(valve);
   new(delayaction_id_2) DelayAction<>();
   delayaction_id_2->set_delay([]() -> uint32_t {
-      #line 237 "desert-quencher.yaml"
+      #line 228 "desert-quencher.yaml"
       return valve_duration_s->value() * 1000;
   });
   new(switch__turnoffaction_id) switch_::TurnOffAction<>(valve);
@@ -1075,12 +1044,19 @@ void setup() {
       ESP_LOGI("main", "No watering needed. %d wake(s) and %d min until next watering.", watering_period->value() - wake_count->value(), (watering_period->value() - wake_count->value()) * 15);
   });
   ifaction_id->add_else({lambdaaction_id_16});
+  new(switch__turnonaction_id_2) switch_::TurnOnAction<>(valve);
+  new(delayaction_id_3) DelayAction<>();
+  delayaction_id_3->set_delay([]() -> uint32_t {
+      #line 252 "desert-quencher.yaml"
+      return valve_duration_s->value() * 1000;
+  });
+  new(switch__turnoffaction_id_2) switch_::TurnOffAction<>(valve);
   new(deep_sleep_enterdeepsleepaction_id) deep_sleep::EnterDeepSleepAction<>(deep_sleep_1);
   deep_sleep_enterdeepsleepaction_id->set_sleep_duration([]() -> uint32_t {
-      #line 262 "desert-quencher.yaml"
-      return sleep_duration_min->value() * 60000;
+      #line 257 "desert-quencher.yaml"
+      return 500;
   });
-  automation_id_13->add_actions({lambdaaction_id_12, updatecomponentaction_id, updatecomponentaction_id_2, updatecomponentaction_id_3, updatecomponentaction_id_4, lambdaaction_id_13, ifaction_id, deep_sleep_enterdeepsleepaction_id});
+  automation_id_11->add_actions({lambdaaction_id_12, updatecomponentaction_id, updatecomponentaction_id_2, updatecomponentaction_id_3, updatecomponentaction_id_4, lambdaaction_id_13, ifaction_id, switch__turnonaction_id_2, delayaction_id_3, switch__turnoffaction_id_2, deep_sleep_enterdeepsleepaction_id});
   new(lambdaaction_id) StatelessLambdaAction<>([]() -> void {
       #line 8 "desert-quencher.yaml"
       if (esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) {
