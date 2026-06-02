@@ -1,0 +1,585 @@
+esphome:
+  name: desert-quencher
+  friendly_name: Desert Quencher
+  on_boot:
+    - priority: -100.0
+      then:
+        - lambda: !lambda |-
+            if (esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) {
+              id(wake_count) = 0;
+            }
+          type_id: lambdaaction_id
+        - logger.log:
+            level: INFO
+            format: Booting — wake_count=%d, period=%d, manual_override=%s
+            args:
+              - !lambda |-
+                id(wake_count)
+              - !lambda |-
+                id(watering_period)
+              - !lambda |-
+                id(manual_override) ? "yes" : "no"
+            tag: main
+            logger_id: logger_logger_id
+          type_id: lambdaaction_id_2
+        - wait_until:
+            condition:
+              api.connected:
+                id: api_apiserver_id
+                state_subscription_only: false
+              type_id: api_apiconnectedcondition_id
+            timeout: 25s
+          type_id: waituntilaction_id
+        - delay: 2s
+          type_id: delayaction_id
+        - script.execute:
+            id: evaluate_and_water
+          type_id: script_scriptexecuteaction_id
+      automation_id: automation_id
+      trigger_id: startuptrigger_id
+  min_version: 2026.5.1
+  build_path: build/desert-quencher
+  platformio_options: {}
+  environment_variables: {}
+  includes: []
+  includes_c: []
+  libraries: []
+  name_add_mac_suffix: false
+  debug_scheduler: false
+  areas: []
+  devices: []
+esp32:
+  board: firebeetle32
+  framework:
+    type: arduino
+    version: 3.3.8
+    sdkconfig_options: {}
+    log_level: ERROR
+    advanced:
+      compiler_optimization: SIZE
+      enable_idf_experimental_features: false
+      enable_lwip_assert: true
+      ignore_efuse_custom_mac: false
+      ignore_efuse_mac_crc: false
+      sram1_as_iram: false
+      enable_lwip_mdns_queries: true
+      enable_lwip_bridge_interface: false
+      enable_lwip_tcpip_core_locking: true
+      enable_lwip_check_thread_safety: true
+      disable_libc_locks_in_iram: true
+      disable_vfs_support_termios: true
+      disable_vfs_support_select: true
+      disable_vfs_support_dir: true
+      freertos_in_iram: false
+      ringbuf_in_iram: false
+      heap_in_iram: false
+      execute_from_psram: false
+      loop_task_stack_size: 8192
+      enable_ota_rollback: true
+      use_full_certificate_bundle: false
+      include_builtin_idf_components: []
+      enable_full_printf: false
+      disable_debug_stubs: true
+      disable_ocd_aware: true
+      disable_usb_serial_jtag_secondary: true
+      disable_dev_null_vfs: true
+      disable_mbedtls_peer_cert: true
+      disable_mbedtls_pkcs7: true
+      disable_regi2c_in_iram: true
+      adc_oneshot_in_iram: false
+      disable_fatfs: true
+    components: []
+    platform_version: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.38-1/platform-espressif32.zip
+    source: pioarduino/framework-arduinoespressif32@https://github.com/espressif/arduino-esp32/releases/download/3.3.8/esp32-core-3.3.8.tar.xz
+  flash_size: 4MB
+  watchdog_timeout: 5s
+  variant: ESP32
+  cpu_frequency: 240MHZ
+wifi:
+  fast_connect: true
+  on_connect:
+    then:
+      - logger.log:
+          format: WiFi connected
+          tag: main
+          level: DEBUG
+          logger_id: logger_logger_id
+          args: []
+        type_id: lambdaaction_id_3
+    trigger_id: trigger_id
+    automation_id: automation_id_2
+  on_disconnect:
+    then:
+      - logger.log:
+          format: WiFi disconnected
+          tag: main
+          level: DEBUG
+          logger_id: logger_logger_id
+          args: []
+        type_id: lambdaaction_id_4
+    trigger_id: trigger_id_2
+    automation_id: automation_id_3
+  id: wifi_wificomponent_id
+  domain: .local
+  reboot_timeout: 15min
+  power_save_mode: LIGHT
+  enable_btm: false
+  enable_rrm: false
+  passive_scan: false
+  enable_on_boot: true
+  post_connect_roaming: true
+  min_auth_mode: WPA2
+  networks:
+    - ssid: Vizinho
+      password: '1234567890'
+      id: wifi_wifiap_id
+      priority: 0
+  use_address: desert-quencher.local
+logger:
+  level: INFO
+  id: logger_logger_id
+  baud_rate: 115200
+  tx_buffer_size: 512
+  deassert_rts_dtr: false
+  task_log_buffer_size: 768
+  hardware_uart: UART0
+  logs: {}
+  runtime_tag_levels: false
+api:
+  encryption:
+    key: MtkUaAOo4hDbpsRYgIuXz+dmCbnwgCkK6pw+UP7KUbU=
+  id: api_apiserver_id
+  port: 6053
+  reboot_timeout: 15min
+  batch_delay: 100ms
+  custom_services: false
+  homeassistant_services: false
+  homeassistant_states: false
+  listen_backlog: 4
+  max_connections: 5
+  max_send_queue: 8
+ota:
+  - platform: esphome
+    password: 37ccb196d824828e7ae890a488326336
+    id: esphome_esphomeotacomponent_id
+    version: 2
+    port: 3232
+    allow_partition_access: false
+deep_sleep:
+  id: deep_sleep_1
+  sleep_duration: 15min
+globals:
+  - id: wake_count
+    type: int
+    restore_value: true
+    initial_value: '0'
+    update_interval: 1s
+  - id: watering_period
+    type: int
+    restore_value: true
+    initial_value: '4'
+    update_interval: 1s
+  - id: valve_duration_s
+    type: int
+    restore_value: true
+    initial_value: '5'
+    update_interval: 1s
+  - id: manual_override
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+    update_interval: 1s
+  - id: sleep_duration_min
+    type: int
+    restore_value: true
+    initial_value: '15'
+    update_interval: 1s
+switch:
+  - platform: gpio
+    pin:
+      number: 26
+      mode:
+        output: true
+        input: false
+        open_drain: false
+        pullup: false
+        pulldown: false
+      id: esp32_esp32internalgpiopin_id
+      inverted: false
+      ignore_pin_validation_error: false
+      ignore_strapping_warning: false
+      drive_strength: 20.0
+    id: valve
+    name: Valve
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - then:
+          - logger.log:
+              level: INFO
+              format: Valve OPENED — will close in %ds
+              args:
+                - !lambda |-
+                  id(valve_duration_s)
+              tag: main
+              logger_id: logger_logger_id
+            type_id: lambdaaction_id_5
+        trigger_id: trigger_id_3
+        automation_id: automation_id_4
+    on_turn_off:
+      - then:
+          - logger.log:
+              format: Valve CLOSED
+              tag: main
+              level: DEBUG
+              logger_id: logger_logger_id
+              args: []
+            type_id: lambdaaction_id_6
+        trigger_id: trigger_id_4
+        automation_id: automation_id_5
+    disabled_by_default: false
+    interlock_wait_time: 0ms
+    _entity_register_method: switch
+    _entity_name: Valve
+    _entity_object_id_hash: 636313445
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 0
+    _entity_dc_idx: 0
+  - platform: template
+    name: Manual Override
+    id: manual_override_switch
+    icon: mdi:water-pump
+    lambda: !lambda |-
+      return id(manual_override);
+    turn_on_action:
+      then:
+        - globals.set:
+            id: manual_override
+            value: 'true'
+          type_id: globals_globalvarsetaction_id
+        - logger.log:
+            format: Manual override ENABLED — will water on next wake
+            tag: main
+            level: DEBUG
+            logger_id: logger_logger_id
+            args: []
+          type_id: lambdaaction_id_7
+      trigger_id: trigger_id_5
+      automation_id: automation_id_6
+    turn_off_action:
+      then:
+        - globals.set:
+            id: manual_override
+            value: 'false'
+          type_id: globals_globalvarsetaction_id_2
+        - logger.log:
+            format: Manual override DISABLED
+            tag: main
+            level: DEBUG
+            logger_id: logger_logger_id
+            args: []
+          type_id: lambdaaction_id_8
+      trigger_id: trigger_id_6
+      automation_id: automation_id_7
+    disabled_by_default: false
+    restore_mode: ALWAYS_OFF
+    optimistic: false
+    assumed_state: false
+    _entity_register_method: switch
+    _entity_name: Manual Override
+    _entity_object_id_hash: 2044534326
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 1
+    _entity_dc_idx: 0
+number:
+  - platform: template
+    name: Watering Period
+    id: watering_period_num
+    icon: mdi:timer
+    unit_of_measurement: ×15 min
+    min_value: 1.0
+    max_value: 96.0
+    step: 1.0
+    lambda: !lambda |-
+      return id(watering_period);
+    update_interval: 4294967295ms
+    set_action:
+      then:
+        - globals.set:
+            id: watering_period
+            value: !lambda |-
+              return (int)x;
+          type_id: globals_globalvarsetaction_id_3
+        - logger.log:
+            level: INFO
+            format: Watering period changed to %d × 15 min = %d min total
+            args:
+              - !lambda |-
+                (int)x
+              - !lambda |-
+                (int)x * 15
+            tag: main
+            logger_id: logger_logger_id
+          type_id: lambdaaction_id_9
+      trigger_id: trigger_id_7
+      automation_id: automation_id_8
+    disabled_by_default: false
+    mode: AUTO
+    optimistic: false
+    _entity_register_method: number
+    _entity_name: Watering Period
+    _entity_object_id_hash: 324852754
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 2
+    _entity_dc_idx: 0
+    _entity_uom_idx: 1
+  - platform: template
+    name: Sleep Duration
+    id: sleep_duration_num
+    icon: mdi:sleep
+    unit_of_measurement: min
+    min_value: 15.0
+    max_value: 1440.0
+    step: 15.0
+    lambda: !lambda |-
+      return id(sleep_duration_min);
+    update_interval: 4294967295ms
+    set_action:
+      then:
+        - globals.set:
+            id: sleep_duration_min
+            value: !lambda |-
+              return (int)x;
+          type_id: globals_globalvarsetaction_id_4
+        - logger.log:
+            level: INFO
+            format: Sleep duration changed to %dmin
+            args:
+              - !lambda |-
+                (int)x
+            tag: main
+            logger_id: logger_logger_id
+          type_id: lambdaaction_id_10
+      trigger_id: trigger_id_8
+      automation_id: automation_id_9
+    disabled_by_default: false
+    mode: AUTO
+    optimistic: false
+    _entity_register_method: number
+    _entity_name: Sleep Duration
+    _entity_object_id_hash: 1579719361
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 3
+    _entity_dc_idx: 0
+    _entity_uom_idx: 2
+  - platform: template
+    name: Valve Duration
+    id: valve_duration_num
+    icon: mdi:water-clock
+    unit_of_measurement: s
+    min_value: 5.0
+    max_value: 300.0
+    step: 5.0
+    lambda: !lambda |-
+      return id(valve_duration_s);
+    update_interval: 4294967295ms
+    set_action:
+      then:
+        - globals.set:
+            id: valve_duration_s
+            value: !lambda |-
+              return (int)x;
+          type_id: globals_globalvarsetaction_id_5
+        - logger.log:
+            level: INFO
+            format: Valve duration changed to %ds
+            args:
+              - !lambda |-
+                (int)x
+            tag: main
+            logger_id: logger_logger_id
+          type_id: lambdaaction_id_11
+      trigger_id: trigger_id_9
+      automation_id: automation_id_10
+    disabled_by_default: false
+    mode: AUTO
+    optimistic: false
+    _entity_register_method: number
+    _entity_name: Valve Duration
+    _entity_object_id_hash: 4198995648
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 4
+    _entity_dc_idx: 0
+    _entity_uom_idx: 3
+sensor:
+  - platform: template
+    name: Wakes Until Watering
+    id: wakes_remaining
+    icon: mdi:counter
+    accuracy_decimals: 0
+    update_interval: 4294967295ms
+    lambda: !lambda |-
+      int rem = id(watering_period) - id(wake_count);
+      return rem > 0 ? rem : 0;
+    disabled_by_default: false
+    force_update: false
+    _entity_register_method: sensor
+    _entity_name: Wakes Until Watering
+    _entity_object_id_hash: 2692768967
+    _entity_disabled_by_default: 0
+    _entity_icon_idx: 5
+    _entity_dc_idx: 0
+    _entity_uom_idx: 0
+  - platform: wifi_signal
+    name: WiFi Signal
+    update_interval: 10s
+    disabled_by_default: false
+    force_update: false
+    id: wifi_signal_wifisignalsensor_id
+    unit_of_measurement: dBm
+    accuracy_decimals: 0
+    device_class: signal_strength
+    state_class: measurement
+    entity_category: diagnostic
+    _entity_register_method: sensor
+    _entity_name: WiFi Signal
+    _entity_object_id_hash: 799351157
+    _entity_disabled_by_default: 0
+    _entity_category: 2
+    _entity_icon_idx: 0
+    _entity_dc_idx: 1
+    _entity_uom_idx: 4
+script:
+  - id: evaluate_and_water
+    then:
+      - lambda: !lambda |-
+          id(wake_count) += 1;
+        type_id: lambdaaction_id_12
+      - component.update:
+          id: wakes_remaining
+        type_id: updatecomponentaction_id
+      - component.update:
+          id: watering_period_num
+        type_id: updatecomponentaction_id_2
+      - component.update:
+          id: valve_duration_num
+        type_id: updatecomponentaction_id_3
+      - component.update:
+          id: sleep_duration_num
+        type_id: updatecomponentaction_id_4
+      - logger.log:
+          level: INFO
+          format: 'Evaluating: wake %d/%d, manual_override=%s, wakes remaining=%d'
+          args:
+            - !lambda |-
+              id(wake_count)
+            - !lambda |-
+              id(watering_period)
+            - !lambda |-
+              id(manual_override) ? "yes" : "no"
+            - !lambda |-
+              id(watering_period) - id(wake_count)
+          tag: main
+          logger_id: logger_logger_id
+        type_id: lambdaaction_id_13
+      - if:
+          condition:
+            lambda: !lambda |-
+              return id(manual_override) || id(wake_count) >= id(watering_period);
+            type_id: lambdacondition_id
+          then:
+            - logger.log:
+                level: INFO
+                format: Watering triggered (%s)
+                args:
+                  - !lambda |-
+                    id(manual_override) ? "manual override" : "scheduled"
+                tag: main
+                logger_id: logger_logger_id
+              type_id: lambdaaction_id_14
+            - switch.turn_on:
+                id: valve
+              type_id: switch__turnonaction_id
+            - delay: !lambda |-
+                return id(valve_duration_s) * 1000;
+              type_id: delayaction_id_2
+            - switch.turn_off:
+                id: valve
+              type_id: switch__turnoffaction_id
+            - globals.set:
+                id: wake_count
+                value: '0'
+              type_id: globals_globalvarsetaction_id_6
+            - globals.set:
+                id: manual_override
+                value: 'false'
+              type_id: globals_globalvarsetaction_id_7
+            - switch.template.publish:
+                id: manual_override_switch
+                state: false
+              type_id: switch__switchpublishaction_id
+            - component.update:
+                id: wakes_remaining
+              type_id: updatecomponentaction_id_5
+            - logger.log:
+                level: INFO
+                format: Watering complete. Next scheduled watering in %d min (%d wakes).
+                args:
+                  - !lambda |-
+                    id(watering_period) * 15
+                  - !lambda |-
+                    id(watering_period)
+                tag: main
+                logger_id: logger_logger_id
+              type_id: lambdaaction_id_15
+          else:
+            - logger.log:
+                level: INFO
+                format: No watering needed. %d wake(s) and %d min until next watering.
+                args:
+                  - !lambda |-
+                    id(watering_period) - id(wake_count)
+                  - !lambda |-
+                    (id(watering_period) - id(wake_count)) * 15
+                tag: main
+                logger_id: logger_logger_id
+              type_id: lambdaaction_id_16
+        type_id: ifaction_id
+      - switch.turn_on:
+          id: valve
+        type_id: switch__turnonaction_id_2
+      - delay: !lambda |-
+          return id(valve_duration_s) * 1000;
+        type_id: delayaction_id_3
+      - switch.turn_off:
+          id: valve
+        type_id: switch__turnoffaction_id_2
+      - deep_sleep.enter:
+          id: deep_sleep_1
+          sleep_duration: !lambda |-
+            return 500;
+        type_id: deep_sleep_enterdeepsleepaction_id
+    trigger_id: trigger_id_10
+    automation_id: automation_id_11
+    mode: single
+    parameters: {}
+preferences:
+  id: preferences_intervalsyncer_id
+  flash_write_interval: 60s
+network:
+  enable_ipv6: false
+  min_ipv6_addr_count: 0
+safe_mode:
+  id: safe_mode_safemodecomponent_id
+  boot_is_good_after: 1min
+  disabled: false
+  num_attempts: 10
+  reboot_timeout: 5min
+md5: {}
+watchdog: {}
+sha256: {}
+socket:
+  implementation: bsd_sockets
+mdns:
+  id: mdns_mdnscomponent_id
+  disabled: false
+  services: []

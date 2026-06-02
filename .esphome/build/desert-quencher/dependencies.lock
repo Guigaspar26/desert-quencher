@@ -1,0 +1,196 @@
+dependencies:
+  chmorgan/esp-libhelix-mp3:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-libhelix-mp3
+      type: local
+    version: '*'
+  espressif/cbor:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/cbor
+      type: local
+    version: '*'
+  espressif/esp-dsp:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-dsp
+      type: local
+    version: '*'
+  espressif/esp-modbus:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-modbus
+      type: local
+    version: '*'
+  espressif/esp-sr:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-sr
+      type: local
+    version: '*'
+  espressif/esp-zboss-lib:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-zboss-lib
+      type: local
+    version: '*'
+  espressif/esp-zigbee-lib:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp-zigbee-lib
+      type: local
+    version: '*'
+  espressif/esp_diag_data_store:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_diag_data_store
+      type: local
+    version: '*'
+  espressif/esp_diagnostics:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_diagnostics
+      type: local
+    version: '*'
+  espressif/esp_hosted:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_hosted
+      type: local
+    version: '*'
+  espressif/esp_insights:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_insights
+      type: local
+    version: '*'
+  espressif/esp_modem:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_modem
+      type: local
+    version: '*'
+  espressif/esp_rainmaker:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_rainmaker
+      type: local
+    version: '*'
+  espressif/esp_rcp_update:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_rcp_update
+      type: local
+    version: '*'
+  espressif/esp_schedule:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_schedule
+      type: local
+    version: '*'
+  espressif/esp_secure_cert_mgr:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_secure_cert_mgr
+      type: local
+    version: '*'
+  espressif/esp_wifi_remote:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/esp_wifi_remote
+      type: local
+    version: '*'
+  espressif/json_generator:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/json_generator
+      type: local
+    version: '*'
+  espressif/json_parser:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/json_parser
+      type: local
+    version: '*'
+  espressif/lan867x:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/lan867x
+      type: local
+    version: '*'
+  espressif/libsodium:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/libsodium
+      type: local
+    version: '*'
+  espressif/mdns:
+    component_hash: 1ebe3bd675bb9d1c58f52bc0b609b32f74e572b01c328f9e61282040c775495c
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.11.0
+  espressif/network_provisioning:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/network_provisioning
+      type: local
+    version: '*'
+  espressif/qrcode:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/qrcode
+      type: local
+    version: '*'
+  espressif/rmaker_common:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/rmaker_common
+      type: local
+    version: '*'
+  idf:
+    source:
+      type: idf
+    version: 5.5.4
+  joltwallet/littlefs:
+    dependencies: []
+    source:
+      path: /Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/component_stubs/littlefs
+      type: local
+    version: '*'
+direct_dependencies:
+- chmorgan/esp-libhelix-mp3
+- espressif/cbor
+- espressif/esp-dsp
+- espressif/esp-modbus
+- espressif/esp-sr
+- espressif/esp-zboss-lib
+- espressif/esp-zigbee-lib
+- espressif/esp_diag_data_store
+- espressif/esp_diagnostics
+- espressif/esp_hosted
+- espressif/esp_insights
+- espressif/esp_modem
+- espressif/esp_rainmaker
+- espressif/esp_rcp_update
+- espressif/esp_schedule
+- espressif/esp_secure_cert_mgr
+- espressif/esp_wifi_remote
+- espressif/json_generator
+- espressif/json_parser
+- espressif/lan867x
+- espressif/libsodium
+- espressif/mdns
+- espressif/network_provisioning
+- espressif/qrcode
+- espressif/rmaker_common
+- idf
+- joltwallet/littlefs
+manifest_hash: 4bd80728e3b877d41fa74618e4b035feb63fa9b8ed3e40726a06dc66800ed96c
+target: esp32
+version: 2.0.0

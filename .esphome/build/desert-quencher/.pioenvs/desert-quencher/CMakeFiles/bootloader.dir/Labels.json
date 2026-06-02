@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/Users/guigas/Projects/DesertQuencher/desert-quencher/.esphome/build/desert-quencher/.pioenvs/desert-quencher/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

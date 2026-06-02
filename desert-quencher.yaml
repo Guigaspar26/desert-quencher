@@ -1,0 +1,273 @@
+esphome:
+  name: desert-quencher
+  friendly_name: Desert Quencher
+  on_boot:
+    priority: -100  # Run after WiFi/API components are initialised
+    then:
+      - lambda: |-
+          if (esp_sleep_get_wakeup_cause() != ESP_SLEEP_WAKEUP_TIMER) {
+            id(wake_count) = 0;
+          }
+      - logger.log:
+          level: INFO
+          format: "Booting — wake_count=%d, period=%d, manual_override=%s"
+          args:
+            - id(wake_count)
+            - id(watering_period)
+            - 'id(manual_override) ? "yes" : "no"'
+      - wait_until:
+          condition:
+            api.connected:
+          timeout: 25s    # Skip HA sync if NAS is unreachable; act on RTC state
+      - delay: 2s         # Give HA time to push pending entity states
+      - script.execute: evaluate_and_water
+
+esp32:
+  board: firebeetle32
+  framework:
+    type: arduino
+
+# ─── I2C (Seeed multi-channel relay, addr 0x11) ──────────────────────────────
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: true
+
+# ─── Connectivity ────────────────────────────────────────────────────────────
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true      # Skip AP scan, connect directly (saves ~1s on wake)
+  on_connect:
+    - logger.log: "WiFi connected"
+  on_disconnect:
+    - logger.log: "WiFi disconnected"
+
+logger:
+  level: INFO
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+# ─── Deep Sleep ──────────────────────────────────────────────────────────────
+# No run_duration — we call deep_sleep.enter manually after acting,
+# so the wake window adapts to valve duration without a fixed ceiling.
+
+deep_sleep:
+  id: deep_sleep_1
+  sleep_duration: 15min
+
+# ─── Persistent State (RTC memory, survives deep sleep) ──────────────────────
+
+globals:
+  - id: wake_count
+    type: int
+    restore_value: yes
+    initial_value: '0'
+
+  - id: watering_period       # Number of 15-min wakes between waterings
+    type: int
+    restore_value: yes
+    initial_value: '4'        # Default: 4 × 15 min = 1 hour
+
+  - id: valve_duration_s
+    type: int
+    restore_value: yes
+    initial_value: '5'       # Default: 5 seconds
+
+  - id: manual_override
+    type: bool
+    restore_value: yes
+    initial_value: 'false'
+
+  - id: sleep_duration_min
+    type: int
+    restore_value: yes
+    initial_value: '15'
+
+# ─── Valve (Seeed relay, I2C 0x11, channel 1) ────────────────────────────────
+# Protocol: [0x10 cmd byte, state bitmask] — bit 0 = ch1, bit 1 = ch2, etc.
+
+switch:
+  - platform: template
+    id: valve
+    name: "Valve"
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    turn_on_action:
+      - logger.log:
+          level: INFO
+          format: "Valve OPENED — will close in %ds"
+          args: [id(valve_duration_s)]
+      - lambda: |-
+          Wire.beginTransmission(0x11);
+          Wire.write(0x10);
+          Wire.write(0x01);  // channel 1 ON
+          Wire.endTransmission();
+    turn_off_action:
+      - logger.log: "Valve CLOSED"
+      - lambda: |-
+          Wire.beginTransmission(0x11);
+          Wire.write(0x10);
+          Wire.write(0x00);  // all channels OFF
+          Wire.endTransmission();
+
+  # Manual override — toggling this ON from HA triggers watering next wake
+  - platform: template
+    name: "Manual Override"
+    id: manual_override_switch
+    icon: mdi:water-pump
+    lambda: return id(manual_override);
+    turn_on_action:
+      - globals.set:
+          id: manual_override
+          value: 'true'
+      - logger.log: "Manual override ENABLED — will water on next wake"
+    turn_off_action:
+      - globals.set:
+          id: manual_override
+          value: 'false'
+      - logger.log: "Manual override DISABLED"
+
+# ─── Configurable Parameters (editable from HA dashboard) ────────────────────
+
+number:
+  - platform: template
+    name: "Watering Period"
+    id: watering_period_num
+    icon: mdi:timer
+    unit_of_measurement: "×15 min"
+    min_value: 1
+    max_value: 96             # Max: 96 × 15 min = 24 hours
+    step: 1
+    lambda: return id(watering_period);
+    update_interval: never
+    set_action:
+      - globals.set:
+          id: watering_period
+          value: !lambda "return (int)x;"
+      - logger.log:
+          level: INFO
+          format: "Watering period changed to %d × 15 min = %d min total"
+          args: ["(int)x", "(int)x * 15"]
+
+  - platform: template
+    name: "Sleep Duration"
+    id: sleep_duration_num
+    icon: mdi:sleep
+    unit_of_measurement: "min"
+    min_value: 15
+    max_value: 1440             # Max: 24 hours
+    step: 15
+    lambda: return id(sleep_duration_min);
+    update_interval: never
+    set_action:
+      - globals.set:
+          id: sleep_duration_min
+          value: !lambda "return (int)x;"
+      - logger.log:
+          level: INFO
+          format: "Sleep duration changed to %dmin"
+          args: ["(int)x"]
+
+  - platform: template
+    name: "Valve Duration"
+    id: valve_duration_num
+    icon: mdi:water-clock
+    unit_of_measurement: "s"
+    min_value: 5
+    max_value: 300
+    step: 5
+    lambda: return id(valve_duration_s);
+    update_interval: never
+    set_action:
+      - globals.set:
+          id: valve_duration_s
+          value: !lambda "return (int)x;"
+      - logger.log:
+          level: INFO
+          format: "Valve duration changed to %ds"
+          args: ["(int)x"]
+
+# ─── Diagnostic Sensors ───────────────────────────────────────────────────────
+
+sensor:
+  - platform: template
+    name: "Wakes Until Watering"
+    id: wakes_remaining
+    icon: mdi:counter
+    accuracy_decimals: 0
+    update_interval: never
+    lambda: |-
+      int rem = id(watering_period) - id(wake_count);
+      return rem > 0 ? rem : 0;
+
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 10s
+
+# ─── Core Logic ──────────────────────────────────────────────────────────────
+
+script:
+  - id: evaluate_and_water
+    then:
+      # Count this wake and push fresh state to HA
+      - lambda: "id(wake_count) += 1;"
+      - component.update: wakes_remaining
+      - component.update: watering_period_num
+      - component.update: valve_duration_num
+      - component.update: sleep_duration_num
+      - logger.log:
+          level: INFO
+          format: "Evaluating: wake %d/%d, manual_override=%s, wakes remaining=%d"
+          args:
+            - id(wake_count)
+            - id(watering_period)
+            - 'id(manual_override) ? "yes" : "no"'
+            - "id(watering_period) - id(wake_count)"
+      - if:
+          condition:
+            lambda: return id(manual_override) || id(wake_count) >= id(watering_period);
+          then:
+            - logger.log:
+                level: INFO
+                format: "Watering triggered (%s)"
+                args: ['id(manual_override) ? "manual override" : "scheduled"']
+            - switch.turn_on: valve
+            - delay: !lambda "return id(valve_duration_s) * 1000;"
+            - switch.turn_off: valve
+            - globals.set:
+                id: wake_count
+                value: '0'
+            - globals.set:
+                id: manual_override
+                value: 'false'
+            - switch.template.publish:
+                id: manual_override_switch
+                state: false
+            - component.update: wakes_remaining
+            - logger.log:
+                level: INFO
+                format: "Watering complete. Next scheduled watering in %d min (%d wakes)."
+                args: ["id(watering_period) * 15", "id(watering_period)"]
+          else:
+            - logger.log:
+                level: INFO
+                format: "No watering needed. %d wake(s) and %d min until next watering."
+                args:
+                  - "id(watering_period) - id(wake_count)"
+                  - "(id(watering_period) - id(wake_count)) * 15"
+      - switch.turn_on: valve
+      - delay: !lambda "return id(valve_duration_s) * 1000;"
+      - switch.turn_off: valve
+      - deep_sleep.enter:
+          id: deep_sleep_1
+          # sleep_duration: !lambda "return id(sleep_duration_min) * 60000;"
+          sleep_duration: !lambda "return 500;"

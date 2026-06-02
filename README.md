@@ -9,14 +9,39 @@ The plan is to use a **Beetle ESP32** to control a valve that is connected to th
 
 The **Beetle ESP32** has both bluetooth and Wi-Fi modules, which makes it possible to communicate with it remotely without too much trouble.
 
-- Beetle ESP32
+- Beetle ESP32 (SDA and SCL pins)
 - 12V valve connected to water point
-- Relay module (5V)
+- Relay module (5V), i2c
 - Booster circuit 3V -> 5V
 - Wall plug (12V)
 - Battery pack (TBD)
 - NAS server
 
+```mermaid
+flowchart LR
+    PLUG["Wall plug 230V AC\nUSB / DC adapter"]
+
+    subgraph power [ ]
+        direction LR
+        PLUG
+    end
+
+    PLUG -.->|5V| ESP
+    PLUG -.->|5V| RELAY
+
+    ESP["ESP32 Beetle\nESPHome · 3.3V"]
+    LS{"3.3V→5V"}
+    RELAY["Relay module\n5V logic"]
+    VALVE["Valve\nOpen / closed"]
+    HA["Home Assistant\nSynology NAS"]
+    PWR["Power · TBD"]
+
+    ESP -->|"I2C"| LS
+    LS --> RELAY
+    RELAY -->|Switch| VALVE
+    PWR -.-> VALVE
+    ESP <-->|WiFi| HA
+```
 
 ## Control
 
